@@ -6,6 +6,7 @@ import java.util.*;
 
 public interface LibroService {
     Libro buscarPorIsbn(String isbn);
+    Libro buscarPorId(Long id);
     List<Libro> obtenerTodos();
     Libro guardar(Libro libro);
     void eliminar(Long id);
