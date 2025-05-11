@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Vg2EF-QZ)
 # 🚀 Trabajo Práctico: Sistema de Gestión de Biblioteca con Spring Framework
 
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.5-green)
@@ -118,8 +119,124 @@ Desarrollar un sistema de gestión de biblioteca utilizando Spring Framework, im
 > 💡 **Nota**: Esta estimación considera la experiencia adquirida en trabajos anteriores y la complejidad de implementar una arquitectura en capas con Spring Framework. El tiempo se ha ajustado considerando que no se requiere implementación de persistencia real.
 
 ## 👨‍🎓 Información del Alumno
-- **Nombre y Apellido**: [Nombre y Apellido del Alumno]
-- **Legajo**: [Número de Legajo]
+- **Nombre y Apellido**: Valentin Coratolo
+- **Legajo**: 62084
+
+## Documentacion:
+
+## Requisitos del sistema
+
+* Java 21 o superior instalado y configurado en el PATH
+* Maven 3.6.0 o superior instalado
+* Git
+
+## Instrucciones de instalación
+
+1. **Clonar el repositorio**
+
+   ```bash
+   git clone git@github.com:um-programacion-ii/programacion-2-trabajo-practico-4-valencora.git
+   ```
+2. **Entrar al directorio del proyecto**
+
+   ```bash
+   cd programacion-2-trabajo-practico-4-valencora
+   ```
+3. **Construir el proyecto y resolver dependencias**
+
+   ```bash
+   mvn clean install
+   ```
+4. **Ejecutar la aplicación**
+
+   ```bash
+   mvn spring-boot:run
+   ```
+5. **Ejecutar test**
+
+   ```bash
+   mvn test
+   ```
+
+## Documentación de endpoints
+
+### Libros
+
+| Método | Ruta               | Descripción                            |
+| ------ | ------------------ | -------------------------------------- |
+| GET    | `/api/libros`      | Listar todos los libros                |
+| GET    | `/api/libros/{id}` | Obtener un libro por su identificador  |
+| POST   | `/api/libros`      | Crear un nuevo libro                   |
+| PUT    | `/api/libros/{id}` | Actualizar un libro existente          |
+| DELETE | `/api/libros/{id}` | Eliminar un libro por su identificador |
+
+### Usuarios
+
+| Método | Ruta                 | Descripción                           |
+| ------ | -------------------- | ------------------------------------- |
+| GET    | `/api/usuarios`      | Listar todos los usuarios             |
+| GET    | `/api/usuarios/{id}` | Obtener un usuario por identificador  |
+| POST   | `/api/usuarios`      | Crear un nuevo usuario                |
+| PUT    | `/api/usuarios/{id}` | Actualizar un usuario existente       |
+| DELETE | `/api/usuarios/{id}` | Eliminar un usuario por identificador |
+
+### Préstamos
+
+| Método | Ruta                  | Descripción                            |
+| ------ | --------------------- | -------------------------------------- |
+| GET    | `/api/prestamos`      | Listar todos los préstamos             |
+| GET    | `/api/prestamos/{id}` | Obtener un préstamo por identificador  |
+| POST   | `/api/prestamos`      | Crear un nuevo préstamo                |
+| PUT    | `/api/prestamos/{id}` | Actualizar un préstamo existente       |
+| DELETE | `/api/prestamos/{id}` | Eliminar un préstamo por identificador |
+
+## Ejemplos de uso
+
+### Listar libros
+
+```bash
+curl -X GET http://localhost:8080/api/libros
+```
+
+### Obtener un libro por id
+
+```bash
+curl -X GET http://localhost:8080/api/libros/1
+```
+
+### Crear un libro
+
+```bash
+curl -X POST http://localhost:8080/api/libros \
+  -H "Content-Type: application/json" \
+  -d '{
+    "isbn": "123-456-789",
+    "titulo": "Mi Libro",
+    "autor": "Autor Ejemplo",
+    "estado": "DISPONIBLE"
+}'
+```
+
+### Actualizar un libro
+
+```bash
+curl -X PUT http://localhost:8080/api/libros/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "isbn": "123-456-789",
+    "titulo": "Mi Libro Modificado",
+    "autor": "Autor Ejemplo",
+    "estado": "PRESTADO"
+}'
+```
+
+### Eliminar un libro
+
+```bash
+curl -X DELETE http://localhost:8080/api/libros/1
+```
+
+
 
 ## 📋 Requisitos Previos
 
