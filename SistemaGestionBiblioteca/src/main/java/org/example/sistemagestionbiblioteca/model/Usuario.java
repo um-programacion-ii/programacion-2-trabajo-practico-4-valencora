@@ -1,4 +1,4 @@
-package org.example.sistemagestionbiblioteca;
+package org.example.sistemagestionbiblioteca.model;
 
 import lombok.*;
 
