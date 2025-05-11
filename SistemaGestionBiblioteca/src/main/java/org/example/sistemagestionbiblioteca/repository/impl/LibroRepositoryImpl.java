@@ -8,42 +8,47 @@ import java.util.*;
 
 @Repository
 public class LibroRepositoryImpl implements LibroRepository {
-    private final Map<Long, Libro> storage = new HashMap<>();
-    private Long nextId = 1L;
+    private final List<Libro> storage = new ArrayList<>();
+    private long nextId = 1L;
 
     @Override
     public Libro save(Libro libro) {
         if (libro.getId() == null) {
             libro.setId(nextId++);
+            storage.add(libro);
+        } else {
+            storage.removeIf(l -> l.getId().equals(libro.getId()));
+            storage.add(libro);
         }
-        storage.put(libro.getId(), libro);
         return libro;
     }
 
     @Override
     public Optional<Libro> findById(Long id) {
-        return Optional.ofNullable(storage.get(id));
+        return storage.stream()
+                .filter(l -> l.getId().equals(id))
+                .findFirst();
     }
 
     @Override
     public Optional<Libro> findByIsbn(String isbn) {
-        return storage.values().stream()
+        return storage.stream()
                 .filter(l -> l.getIsbn().equals(isbn))
                 .findFirst();
     }
 
     @Override
     public List<Libro> findAll() {
-        return new ArrayList<>(storage.values());
+        return new ArrayList<>(storage);
     }
 
     @Override
     public void deleteById(Long id) {
-        storage.remove(id);
+        storage.removeIf(l -> l.getId().equals(id));
     }
 
     @Override
     public boolean existsById(Long id) {
-        return storage.containsKey(id);
+        return storage.stream().anyMatch(l -> l.getId().equals(id));
     }
 }

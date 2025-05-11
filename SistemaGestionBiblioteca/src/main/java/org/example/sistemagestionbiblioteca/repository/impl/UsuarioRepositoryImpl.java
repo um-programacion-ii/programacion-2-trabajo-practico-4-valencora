@@ -8,35 +8,40 @@ import java.util.*;
 
 @Repository
 public class UsuarioRepositoryImpl implements UsuarioRepository {
-    private final Map<Long, Usuario> storage = new HashMap<>();
-    private Long nextId = 1L;
+    private final List<Usuario> storage = new ArrayList<>();
+    private long nextId = 1L;
 
     @Override
     public Usuario save(Usuario usuario) {
         if (usuario.getId() == null) {
             usuario.setId(nextId++);
+            storage.add(usuario);
+        } else {
+            storage.removeIf(u -> u.getId().equals(usuario.getId()));
+            storage.add(usuario);
         }
-        storage.put(usuario.getId(), usuario);
         return usuario;
     }
 
     @Override
     public Optional<Usuario> findById(Long id) {
-        return Optional.ofNullable(storage.get(id));
+        return storage.stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst();
     }
 
     @Override
     public List<Usuario> findAll() {
-        return new ArrayList<>(storage.values());
+        return new ArrayList<>(storage);
     }
 
     @Override
     public void deleteById(Long id) {
-        storage.remove(id);
+        storage.removeIf(u -> u.getId().equals(id));
     }
 
     @Override
     public boolean existsById(Long id) {
-        return storage.containsKey(id);
+        return storage.stream().anyMatch(u -> u.getId().equals(id));
     }
 }
