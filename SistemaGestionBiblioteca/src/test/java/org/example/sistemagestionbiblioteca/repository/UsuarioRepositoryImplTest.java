@@ -32,6 +32,13 @@ class UsuarioRepositoryImplTest {
     }
 
     @Test
+    void existsById_retornaTrueYFalse() {
+        Usuario u = repo.save(new Usuario(null, "X", "x@mail", "ACTIVO"));
+        assertTrue(repo.existsById(u.getId()));
+        assertFalse(repo.existsById(999L));
+    }
+
+    @Test
     void deleteById_eliminaYexistsById() {
         Usuario u = repo.save(new Usuario(null, "X", "x@mail", "ACTIVO"));
         repo.deleteById(u.getId());
