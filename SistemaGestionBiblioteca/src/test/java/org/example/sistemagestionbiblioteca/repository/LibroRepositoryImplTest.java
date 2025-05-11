@@ -36,6 +36,11 @@ class LibroRepositoryImplTest {
     }
 
     @Test
+    void findByIsbn_noExiste_devuelveEmpty() {
+        assertFalse(repo.findByIsbn("NO-EXISTE").isPresent());
+    }
+
+    @Test
     void findAll_devuelveTodos() {
         repo.save(new Libro(null, "1", "A", "B", EstadoLibro.DISPONIBLE));
         repo.save(new Libro(null, "2", "C", "D", EstadoLibro.DISPONIBLE));
